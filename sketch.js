@@ -17,16 +17,7 @@ function setup(){
     engine = Engine.create();
     world = engine.world;
     
-    var options ={
-        bodyA=bird.body,
-        bodyB=constrainedLog.body,
-        stiffness:0.04,
-        length:10
-    }
-    constrainedLog = new Log(230,180,80, PI/2,options);
-    
-    var Chain = Constraint.create(options);
-    World.add(world, Chain);
+    constrainedLog = new Log(230,180,80, PI/2);
     
     ground = new Ground(600,height,1200,20);
     platform = new Ground(150, 305, 300, 170);
@@ -48,6 +39,14 @@ function setup(){
     
     bird = new Bird(100,100);
     
+    var options ={
+        bodyA=bird.body,
+        bodyB=constrainedLog.body,
+        stiffness:0.04,
+        length:10
+    }
+    var Chain = Constraint.create(options);
+    World.add(world, Chain);
 }
 
 function draw(){
